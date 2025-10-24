@@ -1,13 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:honeycomb/shared/auth/auth_controller.dart';
 import 'package:honeycomb/shared/theme/theme.dart';
 import 'package:honeycomb/shared/theme/util.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+  await FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
+
   runApp(const MyApp());
 }
 
@@ -54,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final AuthController authController = Get.put(AuthController());
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -93,6 +103,27 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            ElevatedButton(
+              onPressed: authController.signUp,
+              child: const Text("Sign Up"),
+            ),
+            Obx(() => Text("UID: ${authController.uid.value}")),
+            ElevatedButton(
+              onPressed: authController.signIn,
+              child: Text("Sign In"),
+            ),
+            ElevatedButton(
+              onPressed: authController.signOut,
+              child: Text("SignOut"),
+            ),
+            ElevatedButton(
+              onPressed: authController.sendPasswordResetEmail,
+              child: Text("Password Reset"),
+            ),
+            ElevatedButton(
+              onPressed: authController.updatePassword,
+              child: Text("Update Password"),
             ),
           ],
         ),
