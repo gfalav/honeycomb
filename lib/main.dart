@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:honeycomb/shared/theme/theme.dart';
 import 'package:honeycomb/shared/theme/util.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,8 +25,9 @@ class MyApp extends StatelessWidget {
     );
 
     MaterialTheme theme = MaterialTheme(textTheme);
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Honeycomb',
+      debugShowCheckedModeBanner: false,
       theme: brightness == Brightness.light ? theme.light() : theme.dark(),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
