@@ -1,0 +1,49 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "honeycomb-a4dd8",
+          "appId": "1:376585055277:android:a0533f7946a6ff24c69ca4",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "honeycomb-a4dd8",
+          "configurations": {
+            "android": "1:376585055277:android:a0533f7946a6ff24c69ca4",
+            "ios": "1:376585055277:ios:9dd456ba1904b008c69ca4",
+            "macos": "1:376585055277:ios:9dd456ba1904b008c69ca4",
+            "web": "1:376585055277:web:90d007e93ee4c399c69ca4",
+            "windows": "1:376585055277:web:956faee503fe4bcbc69ca4"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "nam5",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "storage": {
+      "port": 9199
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
+  }
+}

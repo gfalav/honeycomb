@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "376585055277",
+    "project_id": "honeycomb-a4dd8",
+    "storage_bucket": "honeycomb-a4dd8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376585055277:android:a0533f7946a6ff24c69ca4",
+        "android_client_info": {
+          "package_name": "com.example.honeycomb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376585055277-tfqcmrr9l2f7dkh0vj5f9s5mns9dqi5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSnuAg_e39FKTtI3EXHjqv1H9_14rMQbY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "376585055277-tfqcmrr9l2f7dkh0vj5f9s5mns9dqi5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
