@@ -125,6 +125,10 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: authController.updatePassword,
               child: Text("Update Password"),
             ),
+            ElevatedButton(
+              onPressed: authController.signInWithGoogle,
+              child: Text("Sign In with Google"),
+            ),
           ],
         ),
       ),

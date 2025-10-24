@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
 
   final uid = "".obs;
 
@@ -12,6 +15,9 @@ class AuthController extends GetxController {
 
   @override
   void onInit() async {
+    if (!kIsWeb) {
+      _googleSignIn.initialize();
+    }
     _auth.authStateChanges().listen((User? user) {
       if (user == null) {
         uid.value = "";
@@ -136,6 +142,30 @@ class AuthController extends GetxController {
         colorText: Get.theme.colorScheme.error,
         duration: Duration(seconds: 5),
       );
+    }
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    if (kIsWeb) {
+      GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+      googleProvider.addScope(
+        'https://www.googleapis.com/auth/contacts.readonly',
+      );
+      googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
+
+      return await _auth.signInWithPopup(googleProvider);
+    } else {
+      final GoogleSignInAccount googleUser = await GoogleSignIn.instance
+          .authenticate();
+
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+      );
+
+      return await _auth.signInWithCredential(credential);
     }
   }
 }
